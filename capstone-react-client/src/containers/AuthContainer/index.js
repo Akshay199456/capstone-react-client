@@ -44,13 +44,43 @@ class AuthContainer extends Component{
 		// console.log("State from handleLoginChange: ", this.state);
 	}
 
-	handleLoginSubmit = (e) =>{
+	handleLoginSubmit = async (e) =>{
 		e.preventDefault();
 		const updatedLogin = {
 			...this.state.login //spreads current value of login into updatedLogin
 		}
 
 		// console.log("State from handleLoginSubmit: ", this.state);
+		const response = await fetch('http://localhost:9000/api/v1/auth/login', {
+			method: 'POST',
+			credentials: 'include',
+			body: JSON.stringify(updatedLogin),
+			headers: {
+				'Content-Type': 'application/json'
+				}
+			});
+
+		const parsedResponse = await response.json();
+		console.log('Parsed response from handleLoginSubmit: ', parsedResponse);
+
+		if(response.ok){
+			console.log("Successful Parsed Response from handleLoginSubmit: ", parsedResponse);
+			this.setState({
+				successMessage: parsedResponse.success,
+				errorMessage: ''
+			});
+
+			// Storing current user info as a cookie
+			localStorage.setItem('session', JSON.stringify(parsedResponse.session));
+		}
+
+		else{
+			console.log("Failed Parsed Response from handleLoginSubmit: ", parsedResponse);
+			this.setState({
+				errorMessage: parsedResponse.error,
+				successMessage: ''
+			});
+		}
 	}
 
 
