@@ -61,10 +61,10 @@ class AuthContainer extends Component{
 			});
 
 		const parsedResponse = await response.json();
-		console.log('Parsed response from handleLoginSubmit: ', parsedResponse);
+		// console.log('Parsed response from handleLoginSubmit: ', parsedResponse);
 
 		if(response.ok){
-			console.log("Successful Parsed Response from handleLoginSubmit: ", parsedResponse);
+			// console.log("Successful Parsed Response from handleLoginSubmit: ", parsedResponse);
 			this.setState({
 				successMessage: parsedResponse.success,
 				errorMessage: ''
@@ -72,10 +72,13 @@ class AuthContainer extends Component{
 
 			// Storing current user info as a cookie
 			localStorage.setItem('session', JSON.stringify(parsedResponse.session));
+			this.props.history.push('/home');
+
+
 		}
 
 		else{
-			console.log("Failed Parsed Response from handleLoginSubmit: ", parsedResponse);
+			// console.log("Failed Parsed Response from handleLoginSubmit: ", parsedResponse);
 			this.setState({
 				errorMessage: parsedResponse.error,
 				successMessage: ''
@@ -136,10 +139,10 @@ class AuthContainer extends Component{
 			});
 
 
-		console.log("Response: ", response);
+		// console.log("Response: ", response);
 		const parsedResponse = await response.json();
 		if(response.ok){
-			console.log("Successful Parsed Response from handleRegisterSubmit: ", parsedResponse);
+			// console.log("Successful Parsed Response from handleRegisterSubmit: ", parsedResponse);
 			this.setState({
 				successMessage: parsedResponse.success,
 				errorMessage: ''
@@ -147,10 +150,11 @@ class AuthContainer extends Component{
 
 			// Storing current user info as a cookie
 			localStorage.setItem('session', JSON.stringify(parsedResponse.session));
+			this.props.history.push('/home');
 		}
 
 		else{
-			console.log("Failed Parsed Response from handleRegisterSubmit: ", parsedResponse);
+			// console.log("Failed Parsed Response from handleRegisterSubmit: ", parsedResponse);
 			this.setState({
 				errorMessage: parsedResponse.error,
 				successMessage: ''
