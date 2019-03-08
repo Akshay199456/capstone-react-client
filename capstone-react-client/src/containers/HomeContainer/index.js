@@ -25,6 +25,10 @@ class HomeContainer extends Component{
 			[e.target.name]: e.target.value
 		});
 
+		localStorage.setItem('queryString', this.state.queryString);
+		this.props.history.push('/result');
+
+		
 		console.log("State from handleSubmit: ", this.state);
 	}
 

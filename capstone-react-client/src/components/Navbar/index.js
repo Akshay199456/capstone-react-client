@@ -24,6 +24,7 @@ const Navbar = (props) =>{
 
 	            // Delete front end cookies
 	            localStorage.removeItem('session');
+	            localStorage.removeItem('queryString');
 
 
 	            // Redirect to sign in page
