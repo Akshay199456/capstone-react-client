@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../../components/Navbar';
 import YouTube from '../../components/YouTube';
 import NYTNews from '../../components/NYTNews';
+import NewsAPI from '../../components/NewsAPI';
 
 class ResultContainer extends Component{
 	constructor(){
@@ -10,13 +11,15 @@ class ResultContainer extends Component{
 		this.state ={
 			queryString: localStorage.getItem('queryString'),
 			youTubeVideos: [],
-			nytArticles: []
+			nytArticles: [],
+			newsAPIArticles: []
 		}
 	}
 
 	componentDidMount(){
 		// this.fetchYouTubeResults();
-		this.fetchNYTNewsResults();
+		// this.fetchNYTNewsResults();
+		this.fetchNewsAPIResults();
 		
 	}
 
@@ -79,6 +82,36 @@ class ResultContainer extends Component{
 	}
 
 
+	fetchNewsAPIResults = async () =>{
+		console.log("Query String from fetchNewsAPIResults: ", this.state.queryString);
+		const response = await fetch('http://localhost:9000/api/v1/result/newsApi/' + this.state.queryString,{
+			credentials: 'include'
+		});
+
+		console.log("Response from NYT News: ", response);
+		if(response.ok){
+			const parsedResponse = await response.json();
+			console.log('Parsed Response: ', parsedResponse);
+
+			const data = [];
+
+			// All the data associated with the search is stored in parsedResponse.data
+			const articles = parsedResponse.data.articles;
+			for(let i=0; i<articles.length; i++){
+				// console.log("Article Title: ", articles[i].headline.main);
+				data.push(articles[i]);
+			}
+
+			console.log("Data: ", data);
+			this.setState({
+				newsAPIArticles: data
+			});
+		}
+	}
+
+
+
+
 	render(){
 		console.log("State from Result Container: ", this.state);
 		return(
@@ -87,6 +120,7 @@ class ResultContainer extends Component{
 				Welcome to the ResultContainer! Your Query String was <strong> {this.state.queryString} </strong>
 				{ this.state.youTubeVideos.length === 0 ? null : <YouTube youTubeVideos={this.state.youTubeVideos}/>}
 				{ this.state.nytArticles.length === 0 ? null : <NYTNews nytArticles={this.state.nytArticles}/>}
+				{ this.state.newsAPIArticles.length === 0 ? null : <NewsAPI newsAPIArticles={this.state.newsAPIArticles}/>}
 			</div>
 		);
 	}
