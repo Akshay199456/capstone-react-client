@@ -5,6 +5,7 @@ import NYTNews from '../../components/NYTNews';
 import NewsAPI from '../../components/NewsAPI';
 import TechCrunch from '../../components/TechCrunch';
 import Tumblr from '../../components/Tumblr';
+import YouTubeMusic from '../../components/YouTubeMusic';
 
 class ResultContainer extends Component{
 	constructor(){
@@ -16,7 +17,8 @@ class ResultContainer extends Component{
 			nytArticles: [],
 			newsAPIArticles: [],
 			techCrunchArticles: [],
-			tumblrData: []
+			tumblrData: [],
+			youTubeMusicVideos: []
 		}
 	}
 
@@ -26,7 +28,8 @@ class ResultContainer extends Component{
 		// this.fetchNewsAPIResults();
 		// this.fetchTechCrunchResults();
 		// this.fetchMusixMatchResults();
-		this.fetchTumblrResults();
+		// this.fetchTumblrResults();
+		this.fetchYouTubeMusicResults();
 	}
 
 
@@ -203,6 +206,33 @@ class ResultContainer extends Component{
 
 	}
 
+	fetchYouTubeMusicResults = async () =>{
+		console.log("Query String from fetchYouTubeMusicResults: ", this.state.queryString);
+		const response = await fetch('http://localhost:9000/api/v1/result/youtubemusic/' + this.state.queryString,{
+			credentials: 'include'
+		});
+
+		console.log("Response from YouTube Music: ", response);
+		if(response.ok){
+			const parsedResponse = await response.json();
+			console.log('Parsed Response: ', parsedResponse);
+
+			const data = [];
+
+			// All the data associated with the search is stored in parsedResponse
+			const articles = parsedResponse.data.items;
+			for(let i=0; i<articles.length; i++){
+				// console.log("Article Title: ", articles[i].headline.main);
+				data.push(articles[i]);
+			}
+
+			console.log("Data: ", data);
+			this.setState({
+				youTubeMusicVideos: data
+			});
+		}
+
+	}
 
 
 
@@ -219,6 +249,7 @@ class ResultContainer extends Component{
 				{ this.state.newsAPIArticles.length === 0 ? null : <NewsAPI newsAPIArticles={this.state.newsAPIArticles}/>}
 				{ this.state.techCrunchArticles.length === 0 ? null : <TechCrunch techCrunchArticles={this.state.techCrunchArticles}/>}
 				{ this.state.tumblrData.length === 0 ? null : <Tumblr tumblrData={this.state.tumblrData}/>}
+				{ this.state.youTubeMusicVideos.length === 0 ? null : <YouTubeMusic youTubeMusicVideos={this.state.youTubeMusicVideos}/>}
 			</div>
 		);
 	}
