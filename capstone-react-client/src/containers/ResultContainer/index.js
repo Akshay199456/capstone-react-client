@@ -3,6 +3,7 @@ import Navbar from '../../components/Navbar';
 import YouTube from '../../components/YouTube';
 import NYTNews from '../../components/NYTNews';
 import NewsAPI from '../../components/NewsAPI';
+import TechCrunch from '../../components/TechCrunch';
 
 class ResultContainer extends Component{
 	constructor(){
@@ -12,14 +13,16 @@ class ResultContainer extends Component{
 			queryString: localStorage.getItem('queryString'),
 			youTubeVideos: [],
 			nytArticles: [],
-			newsAPIArticles: []
+			newsAPIArticles: [],
+			techCrunchArticles: []
 		}
 	}
 
 	componentDidMount(){
 		// this.fetchYouTubeResults();
 		// this.fetchNYTNewsResults();
-		this.fetchNewsAPIResults();
+		// this.fetchNewsAPIResults();
+		this.fetchTechCrunchResults();
 		
 	}
 
@@ -88,7 +91,7 @@ class ResultContainer extends Component{
 			credentials: 'include'
 		});
 
-		console.log("Response from NYT News: ", response);
+		console.log("Response from Tech Crunch News: ", response);
 		if(response.ok){
 			const parsedResponse = await response.json();
 			console.log('Parsed Response: ', parsedResponse);
@@ -111,6 +114,37 @@ class ResultContainer extends Component{
 
 
 
+	fetchTechCrunchResults = async () =>{
+		console.log("Query String from fetchTechCrunchResults: ", this.state.queryString);
+		const response = await fetch('http://localhost:9000/api/v1/result/techcrunch/' + this.state.queryString,{
+			credentials: 'include'
+		});
+
+		console.log("Response from Tech Crunch News: ", response);
+		if(response.ok){
+			const parsedResponse = await response.json();
+			console.log('Parsed Response: ', parsedResponse);
+
+			const data = [];
+
+			// All the data associated with the search is stored in parsedResponse.data
+			const articles = parsedResponse.data.articles;
+			for(let i=0; i<articles.length; i++){
+				// console.log("Article Title: ", articles[i].headline.main);
+				data.push(articles[i]);
+			}
+
+			console.log("Data: ", data);
+			this.setState({
+				techCrunchArticles: data
+			});
+		}
+	}
+
+
+
+
+
 
 	render(){
 		console.log("State from Result Container: ", this.state);
@@ -121,6 +155,7 @@ class ResultContainer extends Component{
 				{ this.state.youTubeVideos.length === 0 ? null : <YouTube youTubeVideos={this.state.youTubeVideos}/>}
 				{ this.state.nytArticles.length === 0 ? null : <NYTNews nytArticles={this.state.nytArticles}/>}
 				{ this.state.newsAPIArticles.length === 0 ? null : <NewsAPI newsAPIArticles={this.state.newsAPIArticles}/>}
+				{ this.state.techCrunchArticles.length === 0 ? null : <TechCrunch techCrunchArticles={this.state.techCrunchArticles}/>}
 			</div>
 		);
 	}
