@@ -6,6 +6,7 @@ import NewsAPI from '../../components/NewsAPI';
 import TechCrunch from '../../components/TechCrunch';
 import Tumblr from '../../components/Tumblr';
 import YouTubeMusic from '../../components/YouTubeMusic';
+import LastFm from '../../components/LastFm';
 
 class ResultContainer extends Component{
 	constructor(){
@@ -18,7 +19,9 @@ class ResultContainer extends Component{
 			newsAPIArticles: [],
 			techCrunchArticles: [],
 			tumblrData: [],
-			youTubeMusicVideos: []
+			youTubeMusicVideos: [],
+			lastFmResults: [],
+
 		}
 	}
 
@@ -29,7 +32,8 @@ class ResultContainer extends Component{
 		// this.fetchTechCrunchResults();
 		// this.fetchMusixMatchResults();
 		// this.fetchTumblrResults();
-		this.fetchYouTubeMusicResults();
+		// this.fetchYouTubeMusicResults();
+		this.fetchLastFmResults();
 	}
 
 
@@ -236,6 +240,35 @@ class ResultContainer extends Component{
 
 
 
+	fetchLastFmResults = async () =>{
+		console.log("Query String from fetchLastFmResults: ", this.state.queryString);
+		const response = await fetch('http://localhost:9000/api/v1/result/lastfm/' + this.state.queryString,{
+			credentials: 'include'
+		});
+
+		console.log("Response from Last Fm: ", response);
+		if(response.ok){
+			const parsedResponse = await response.json();
+			console.log('Parsed Response: ', parsedResponse);
+
+			const data = [];
+
+			// All the data associated with the search is stored in parsedResponse.data.results
+			const articles = parsedResponse.data.results.trackmatches.track;
+			for(let i=0; i<articles.length; i++){
+				// console.log("Article Title: ", articles[i].headline.main);
+				data.push(articles[i]);
+			}
+
+			console.log("Data: ", data);
+			this.setState({
+				lastFmResults: data
+			});
+		}
+
+	}
+
+
 
 
 	render(){
@@ -250,6 +283,7 @@ class ResultContainer extends Component{
 				{ this.state.techCrunchArticles.length === 0 ? null : <TechCrunch techCrunchArticles={this.state.techCrunchArticles}/>}
 				{ this.state.tumblrData.length === 0 ? null : <Tumblr tumblrData={this.state.tumblrData}/>}
 				{ this.state.youTubeMusicVideos.length === 0 ? null : <YouTubeMusic youTubeMusicVideos={this.state.youTubeMusicVideos}/>}
+				{ this.state.lastFmResults.length === 0 ? null : <LastFm lastFmResults={this.state.lastFmResults}/>}
 			</div>
 		);
 	}
