@@ -7,12 +7,12 @@ const NYTNews = (props) =>{
 		console.log("Multimedia: ", item.multimedia);
 		return(
 			<Segment raised key={item._id}>
-				{ item.multimedia.length !== 0 ? <div> Image: <img src={"https://static01.nyt.com/"+(item.multimedia)[0].url}/></div> : null}
+				{ item.multimedia.length !== 0 ? <div> Image: <img src={"https://static01.nyt.com/"+(item.multimedia)[0].url} alt="Something"/></div> : null}
 				<div> Published date: {item.pub_date} </div>
 				<div> Section Name: {item.section_name} </div>
 				<div> Headline: {item.headline.main}</div>
 				<div> Lead Paragraph: {item.lead_paragraph}</div>
-				<div> <a href={item.web_url} target="_blank"> WebLink </a> </div>
+				<div> <a href={item.web_url} target="_blank" rel="noopener noreferrer"> WebLink </a> </div>
 			</Segment>
 		);
 	});
