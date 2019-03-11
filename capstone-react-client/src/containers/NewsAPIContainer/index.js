@@ -12,12 +12,15 @@ class NewsAPIContainer extends Component{
 
 
 			newsAPIArticles: JSON.parse(localStorage.getItem('newsAPIArticles')),
-			topHeadlines: []
+			topHeadlines: [],
+			popularHeadlines: []
 		}
 	}
 
-	componentDidMount(){
-		this.fetchTopHeadlines();
+	componentDidMount = async () => {
+		await this.fetchTopHeadlines();
+		await this.fetchPopularHeadlines();
+
 	}
 
 	fetchTopHeadlines = async () =>{
@@ -42,6 +45,28 @@ class NewsAPIContainer extends Component{
 		}
 	}
 
+	fetchPopularHeadlines = async () =>{
+		const response = await fetch('http://localhost:9000/api/v1/result/popular/newsapi/' + this.state.queryString, {
+			credentials: 'include'
+		});
+		console.log("Popular Headlines Response from News API Container", response);
+		if(response.ok){
+			const parsedResponse = await response.json();
+			console.log("Popular Headlines Response Parsed Response from News API Container", parsedResponse);
+
+			const articles = [];
+			const data = parsedResponse.data.articles;
+
+			for(let i=0; i<data.length; i++){
+				articles.push(data[i]);
+			}
+
+			this.setState({
+				popularHeadlines: articles
+			});
+		}
+	}
+
 	render(){
 		console.log("State from NewsAPIContainer: ", this.state);
 		return(
@@ -49,7 +74,8 @@ class NewsAPIContainer extends Component{
 				<Navbar/>
 				Welcome to the News API Container
 				{ this.state.newsAPIArticles.length === 0 ? null : <NewsAPI newsAPIArticles={this.state.newsAPIArticles}/>}
-				{ this.state.topHeadlines.length === 0 ? null : <TrendingNewsAPI topHeadlines={this.state.topHeadlines}/>}
+				{ this.state.topHeadlines.length === 0 ? null : <TrendingNewsAPI headlines={this.state.topHeadlines} name={'Trending Headlines'}/>}
+				{ this.state.popularHeadlines.length === 0 ? null : <TrendingNewsAPI headlines={this.state.popularHeadlines} name={'Popular Headlines'}/>}
 			</div>
 		);
 	}

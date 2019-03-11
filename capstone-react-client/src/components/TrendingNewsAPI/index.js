@@ -3,7 +3,7 @@ import { Segment } from 'semantic-ui-react';
 
 const TrendingNewsAPI = (props) =>{
 
-	const articles = props.topHeadlines.map((item, index) =>{
+	const articles = props.headlines.map((item, index) =>{
 		return(
 			<Segment raised key={index}>
 				<div> Image: <img src={item.urlToImage} alt="Something"/></div>
@@ -20,7 +20,7 @@ const TrendingNewsAPI = (props) =>{
 
 	return(
 			<div> 
-				<h1> Trending News API Articles </h1>
+				<h1> {props.name} News API </h1>
 				{articles}
 			</div> 
 	);
