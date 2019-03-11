@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../../components/Navbar';
-import YouTube from '../../components/YouTube';
-import NYTNews from '../../components/NYTNews';
-import NewsAPI from '../../components/NewsAPI';
-import TechCrunch from '../../components/TechCrunch';
-import Tumblr from '../../components/Tumblr';
-import YouTubeMusic from '../../components/YouTubeMusic';
-import LastFm from '../../components/LastFm';
-
-import {RadialChart} from 'react-vis';
+import APIComponent from '../../components/APIComponent';
+import DisplayPieChart from '../../components/DisplayPieChart';
 
 
 class ResultContainer extends Component{
@@ -339,8 +332,14 @@ class ResultContainer extends Component{
 		this.setState({
 			entertainmentPercentage: degree1,
 			musicPercentage: degree2,
-			newsPercentage: degree3,
-			dataReadyToDisplay: true
+			newsPercentage: degree3
+		});
+	}
+
+	setDataReady = () =>{
+		const value = this.state.dataReadyToDisplay;
+		this.setState({
+			dataReadyToDisplay: !value
 		});
 	}
 
@@ -351,23 +350,24 @@ class ResultContainer extends Component{
 			<div>
 				<Navbar/>
 				Welcome to the ResultContainer! Your Query String was <strong> {this.state.queryString} </strong>
-				{ this.state.youTubeVideos.length === 0 ? null : <YouTube youTubeVideos={this.state.youTubeVideos}/>}
-				{ this.state.nytArticles.length === 0 ? null : <NYTNews nytArticles={this.state.nytArticles}/>}
-				{ this.state.newsAPIArticles.length === 0 ? null : <NewsAPI newsAPIArticles={this.state.newsAPIArticles}/>}
-				{ this.state.techCrunchArticles.length === 0 ? null : <TechCrunch techCrunchArticles={this.state.techCrunchArticles}/>}
-				{ this.state.tumblrData.length === 0 ? null : <Tumblr tumblrData={this.state.tumblrData}/>}
-				{ this.state.youTubeMusicVideos.length === 0 ? null : <YouTubeMusic youTubeMusicVideos={this.state.youTubeMusicVideos}/>}
-				{ this.state.lastFmResults.length === 0 ? null : <LastFm lastFmResults={this.state.lastFmResults}/>}
 
-				{ this.state.dataReadyToDisplay ?
-					<RadialChart
-						data={[{angle: this.state.entertainmentPercentage, color: 0.3, label: 'Entertainment', sublabel:'Percentage:'+this.state.entertainmentPercentage}, {angle: this.state.musicPercentage, color: 1.6, label: 'Music'}, {angle: this.state.newsPercentage, color: 1.9, label: 'News'}]}
-						width={300}
-						height={300} 
-						showLabels={true}
-					/>
-					 : null
-				}
+				<APIComponent 
+					youTubeVideos={this.state.youTubeVideos} youTubeVideosLength = {this.state.youTubeVideos.length}
+					nytArticles={this.state.nytArticles} nytArticlesLength = {this.state.nytArticles.length}
+					newsAPIArticles={this.state.newsAPIArticles} newsAPIArticlesLength = {this.state.newsAPIArticles.length}
+					techCrunchArticles={this.state.techCrunchArticles} techCrunchArticlesLength = {this.state.techCrunchArticles.length}
+					tumblrData={this.state.tumblrData} tumblrDataLength = {this.state.tumblrData.length}
+					youTubeMusicVideos={this.state.youTubeMusicVideos} youTubeMusicVideosLength = {this.state.youTubeMusicVideos.length}
+					lastFmResults={this.state.lastFmResults} lastFmResultsLength = {this.state.lastFmResults.length}
+				/>
+				
+				<DisplayPieChart 
+					angle1 = {this.state.entertainmentPercentage} label1={'Entertainment'}
+					angle2 = {this.state.musicPercentage} label2={'Music'}
+					angle3 = {this.state.newsPercentage} label3={'News'}
+					setDataReady = {this.setDataReady}
+					dataReadyToDisplay = {this.state.dataReadyToDisplay}
+				/> 
 			</div>
 		);
 	}
