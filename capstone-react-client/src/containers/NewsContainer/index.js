@@ -58,6 +58,21 @@ class NewsContainer extends Component{
 		});
 	}
 
+	travelNYT = () =>{
+		console.log("Traveling to NYT");
+		this.props.history.push('/news/nyt');
+	}
+
+	travelNewsAPI = () =>{
+		console.log("Traveling to News API");
+		this.props.history.push('/news/newsapi');
+	}
+
+	travelTechCrunch = () =>{
+		console.log("Traveling to TechCrunch");
+		this.props.history.push('/news/techcrunch');
+	}
+
 	render(){
 		console.log("State from NewsContainer: ", this.state);
 		return(
@@ -65,9 +80,9 @@ class NewsContainer extends Component{
 				<Navbar/>
 				News Container
 				<NewsComponent 
-					nytArticles={this.state.nytArticles} nytArticlesLength = {this.state.nytArticles.length}
-					newsAPIArticles={this.state.newsAPIArticles} newsAPIArticlesLength = {this.state.newsAPIArticles.length}
-					techCrunchArticles={this.state.techCrunchArticles} techCrunchArticlesLength = {this.state.techCrunchArticles.length}
+					nytArticles={this.state.nytArticles} nytArticlesLength = {this.state.nytArticles.length} travelNYT={this.travelNYT}
+					newsAPIArticles={this.state.newsAPIArticles} newsAPIArticlesLength = {this.state.newsAPIArticles.length} travelNewsAPI={this.travelNewsAPI}
+					techCrunchArticles={this.state.techCrunchArticles} techCrunchArticlesLength = {this.state.techCrunchArticles.length} travelTechCrunch={this.travelTechCrunch}
 				/>
 
 				<DisplayPieChart 

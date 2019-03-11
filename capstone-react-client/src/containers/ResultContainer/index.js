@@ -47,12 +47,12 @@ class ResultContainer extends Component{
 	componentDidMount = async () => {
 		// Fetching results for entertainment category
 		// await this.fetchYouTubeResults();
-		await this.fetchTumblrResults();
+		// await this.fetchTumblrResults();
 
 		//  Fetching results for news category
-		// await this.fetchNYTNewsResults();
-		// await this.fetchNewsAPIResults();
-		// await this.fetchTechCrunchResults();
+		await this.fetchNYTNewsResults();
+		await this.fetchNewsAPIResults();
+		await this.fetchTechCrunchResults();
 
 		// Fetching results for music category
 		// await this.fetchYouTubeMusicResults();
