@@ -26,6 +26,26 @@ const Navbar = (props) =>{
 	            localStorage.removeItem('session');
 	            localStorage.removeItem('queryString');
 
+	            // Deleting data for entertainment category
+				localStorage.removeItem('youTubeVideos');
+				localStorage.removeItem('youTubeVideosCount');
+				localStorage.removeItem('tumblrData')
+				localStorage.removeItem('tumblrDataCount');
+
+				// Delete data for news category
+				localStorage.removeItem('nytArticles');
+				localStorage.removeItem('nytArticlesCount');
+				localStorage.removeItem('newsAPIArticles');
+				localStorage.removeItem('newsAPIArticlesCount');
+				localStorage.removeItem('techCrunchArticles');
+				localStorage.removeItem('techCrunchArticlesCount');
+
+				// Delete data for music category
+				localStorage.removeItem('youTubeMusicVideos');
+				localStorage.removeItem('youTubeMusicVideosCount');
+				localStorage.removeItem('lastFmResults');
+				localStorage.removeItem('lastFmResultsCount');
+
 
 	            // Redirect to sign in page
 	            props.history.push('/');

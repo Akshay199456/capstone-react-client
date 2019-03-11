@@ -11,16 +11,22 @@ class ResultContainer extends Component{
 		this.state ={
 			// Data from different platforms
 			queryString: localStorage.getItem('queryString'),
+
+
 			youTubeVideos: [],
 			youTubeVideosCount: 0,
+			tumblrData: [],
+			tumblrDataCount: 0,
+
+
 			nytArticles: [],
 			nytArticlesCount: 0,
 			newsAPIArticles: [],
 			newsAPIArticlesCount: 0,
 			techCrunchArticles: [],
 			techCrunchArticlesCount: 0,
-			tumblrData: [],
-			tumblrDataCount: 0,
+
+
 			youTubeMusicVideos: [],
 			youTubeMusicVideosCount: 0,
 			lastFmResults: [],
@@ -39,15 +45,24 @@ class ResultContainer extends Component{
 	}
 
 	componentDidMount = async () => {
-		await this.fetchYouTubeResults();
-		await this.fetchNYTNewsResults();
-		await this.fetchNewsAPIResults();
-		await this.fetchTechCrunchResults();
-		await this.fetchTumblrResults();
+		// Fetching results for entertainment category
+		// await this.fetchYouTubeResults();
+		// await this.fetchTumblrResults();
+
+		//  Fetching results for news category
+		// await this.fetchNYTNewsResults();
+		// await this.fetchNewsAPIResults();
+		// await this.fetchTechCrunchResults();
+
+		// Fetching results for music category
 		await this.fetchYouTubeMusicResults();
 		await this.fetchLastFmResults();
 
+		// Generates pie graph for overall stats
 		await this.generateStatsOverall();
+
+		// Transfers all data to local Storage
+		await this.transferData();
 	}
 
 
@@ -343,6 +358,46 @@ class ResultContainer extends Component{
 		});
 	}
 
+	transferEntertainment = () =>{
+		console.log("Transfer Entertainment reached!");
+		
+		// this.props.history.push('/entertainment');
+	}
+
+	transferNews = () => {
+		console.log("Transfer News reached!");
+
+		this.props.history.push('/news');
+	}
+
+	transferMusic = () =>{
+		console.log("Transfer Music reached!");
+
+		this.props.history.push('/music');
+	}
+
+	transferData = () =>{
+		// Transferring data for entertainment category
+		localStorage.setItem('youTubeVideos', JSON.stringify(this.state.youTubeVideos));
+		localStorage.setItem('youTubeVideosCount', JSON.stringify(this.state.youTubeVideosCount));
+		localStorage.setItem('tumblrData', JSON.stringify(this.state.tumblrData));
+		localStorage.setItem('tumblrDataCount', JSON.stringify(this.state.tumblrDataCount));
+
+		// Transferring data for news category
+		localStorage.setItem('nytArticles', JSON.stringify(this.state.nytArticles));
+		localStorage.setItem('nytArticlesCount', JSON.stringify(this.state.nytArticlesCount));
+		localStorage.setItem('newsAPIArticles', JSON.stringify(this.state.newsAPIArticles));
+		localStorage.setItem('newsAPIArticlesCount', JSON.stringify(this.state.newsAPIArticlesCount));
+		localStorage.setItem('techCrunchArticles', JSON.stringify(this.state.techCrunchArticles));
+		localStorage.setItem('techCrunchArticlesCount', JSON.stringify(this.state.techCrunchArticlesCount));
+
+		// Transferring data for music category
+		localStorage.setItem('youTubeMusicVideos', JSON.stringify(this.state.youTubeMusicVideos));
+		localStorage.setItem('youTubeMusicVideosCount', JSON.stringify(this.state.youTubeMusicVideosCount));
+		localStorage.setItem('lastFmResults', JSON.stringify(this.state.lastFmResults));
+		localStorage.setItem('lastFmResultsCount', JSON.stringify(this.state.lastFmResultsCount));
+	}
+
 	render(){
 
 		console.log("State from Result Container: ", this.state);
@@ -367,7 +422,11 @@ class ResultContainer extends Component{
 					angle3 = {this.state.newsPercentage} label3={'News'}
 					setDataReady = {this.setDataReady}
 					dataReadyToDisplay = {this.state.dataReadyToDisplay}
-				/> 
+				/>
+
+				<button onClick={this.transferEntertainment}> Explore Entertainment </button> 
+				<button onClick={this.transferMusic}> Explore Music </button> 
+				<button onClick={this.transferNews}> Explore News </button> 
 			</div>
 		);
 	}
