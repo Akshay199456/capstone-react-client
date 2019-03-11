@@ -55,8 +55,8 @@ class ResultContainer extends Component{
 		// await this.fetchTechCrunchResults();
 
 		// Fetching results for music category
-		await this.fetchYouTubeMusicResults();
-		await this.fetchLastFmResults();
+		// await this.fetchYouTubeMusicResults();
+		// await this.fetchLastFmResults();
 
 		// Generates pie graph for overall stats
 		await this.generateStatsOverall();

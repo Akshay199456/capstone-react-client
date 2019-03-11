@@ -67,7 +67,7 @@ class MusicContainer extends Component{
 				<DisplayPieChart 
 					angle1 = {this.state.youTubeMusicVideosPercentage} label1={'YouTube Music'}
 					angle2 = {this.state.lastFmResultsPercentage} label2={'Last Fm'}
-					angle3 = {0} label3={'Null'}
+					angle3 = {0} label3={''}
 					setDataReady = {this.setDataReady}
 					dataReadyToDisplay = {this.state.dataReadyToDisplay}
 				/>
