@@ -1,10 +1,12 @@
 import React from 'react';
 
 import YouTube from '../YouTube';
+import Tumblr from '../Tumblr';
+
 import NYTNews from '../NYTNews';
 import NewsAPI from '../NewsAPI';
 import TechCrunch from '../TechCrunch';
-import Tumblr from '../Tumblr';
+
 import YouTubeMusic from '../YouTubeMusic';
 import LastFm from '../LastFm';
 

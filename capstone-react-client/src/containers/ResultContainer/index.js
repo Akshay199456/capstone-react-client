@@ -47,7 +47,7 @@ class ResultContainer extends Component{
 	componentDidMount = async () => {
 		// Fetching results for entertainment category
 		// await this.fetchYouTubeResults();
-		// await this.fetchTumblrResults();
+		await this.fetchTumblrResults();
 
 		//  Fetching results for news category
 		// await this.fetchNYTNewsResults();
@@ -361,7 +361,7 @@ class ResultContainer extends Component{
 	transferEntertainment = () =>{
 		console.log("Transfer Entertainment reached!");
 		
-		// this.props.history.push('/entertainment');
+		this.props.history.push('/entertainment');
 	}
 
 	transferNews = () => {
