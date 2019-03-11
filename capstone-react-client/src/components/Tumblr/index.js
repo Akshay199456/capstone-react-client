@@ -59,7 +59,7 @@ const Tumblr = (props) =>{
 		else if(item.type === 'link'){
 			return(
 				<Segment raised key={index}>
-					<div> Link Image: <img src={(item.photos)[0].original_size.url} alt="Something"/></div>
+					{ (item.photos) ? <div> Link Image: <img src={(item.photos)[0].original_size.url} alt="Something"/></div> : null}
 					<div> Excerpt: {item.excerpt} </div>
 					<div> Date: {item.date} </div>
 					<div> Blog Name: {item.blog_name} </div>

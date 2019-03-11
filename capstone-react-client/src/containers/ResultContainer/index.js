@@ -15,12 +15,19 @@ class ResultContainer extends Component{
 		this.state ={
 			queryString: localStorage.getItem('queryString'),
 			youTubeVideos: [],
+			youTubeVideosCount: 0,
 			nytArticles: [],
+			nytArticlesCount: 0,
 			newsAPIArticles: [],
+			newsAPIArticlesCount: 0,
 			techCrunchArticles: [],
+			techCrunchArticlesCount: 0,
 			tumblrData: [],
+			tumblrDataCount: 0,
 			youTubeMusicVideos: [],
+			youTubeMusicVideosCount: 0,
 			lastFmResults: [],
+			lastFmResultsCount: 0
 
 		}
 	}
@@ -30,10 +37,9 @@ class ResultContainer extends Component{
 		// this.fetchNYTNewsResults();
 		// this.fetchNewsAPIResults();
 		// this.fetchTechCrunchResults();
-		// this.fetchMusixMatchResults();
-		// this.fetchTumblrResults();
+		this.fetchTumblrResults();
 		// this.fetchYouTubeMusicResults();
-		this.fetchLastFmResults();
+		// this.fetchLastFmResults();
 	}
 
 
@@ -62,7 +68,8 @@ class ResultContainer extends Component{
 			}
 
 			this.setState({
-				youTubeVideos: videoIdArray
+				youTubeVideos: videoIdArray,
+				youTubeVideosCount: parsedResponse.data.pageInfo.totalResults
 			});
 		}
 	}
@@ -89,7 +96,8 @@ class ResultContainer extends Component{
 
 			console.log("Data: ", data);
 			this.setState({
-				nytArticles: data
+				nytArticles: data,
+				nytArticlesCount: parsedResponse.data.response.meta.hits
 			});
 		}
 	}
@@ -117,7 +125,8 @@ class ResultContainer extends Component{
 
 			console.log("Data: ", data);
 			this.setState({
-				newsAPIArticles: data
+				newsAPIArticles: data,
+				newsAPIArticlesCount: parsedResponse.data.totalResults
 			});
 		}
 	}
@@ -146,7 +155,8 @@ class ResultContainer extends Component{
 
 			console.log("Data: ", data);
 			this.setState({
-				techCrunchArticles: data
+				techCrunchArticles: data,
+				techCrunchArticlesCount: parsedResponse.data.totalResults
 			});
 		}
 	}
@@ -203,8 +213,19 @@ class ResultContainer extends Component{
 			}
 
 			console.log("Data: ", data);
+			let value;
+			if(parsedResponse.blogCount === -1){
+				value = parsedResponse.blogInfo.blog.total_posts;
+				if(value < 20){
+					value = 20;
+				}
+			}
+			else
+				value = 20
+
 			this.setState({
-				tumblrData: data
+				tumblrData: data,
+				tumblrDataCount: value
 			});
 		}
 
@@ -232,7 +253,8 @@ class ResultContainer extends Component{
 
 			console.log("Data: ", data);
 			this.setState({
-				youTubeMusicVideos: data
+				youTubeMusicVideos: data,
+				youTubeMusicVideosCount: parsedResponse.data.pageInfo.totalResults
 			});
 		}
 
@@ -262,7 +284,8 @@ class ResultContainer extends Component{
 
 			console.log("Data: ", data);
 			this.setState({
-				lastFmResults: data
+				lastFmResults: data,
+				lastFmResultsCount: parseInt((parsedResponse.data.results)['opensearch:totalResults'], 10)
 			});
 		}
 
