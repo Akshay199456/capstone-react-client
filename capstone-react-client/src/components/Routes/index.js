@@ -22,12 +22,10 @@ import TechCrunchContainer from '../../containers/TechCrunchContainer';
 
 // B. Music Containers
 import LastFmContainer from '../../containers/LastFmContainer';
-// import YouTubeMusicContainer from '../../containers/YouTubeMusicContainer';
+import YouTubeMusicContainer from '../../containers/YouTubeMusicContainer';
 
 // C. Entertainment Containers
 import YouTubeContainer from '../../containers/YouTubeContainer';
-
-// <Route exact path = '/music/youtubemusic' component = {YouTubeMusicContainer}/>
 
 
 import My404 from '../404';
@@ -52,6 +50,7 @@ const AllRoutes = () => {
                   <Route exact path = '/news/nyt' component = {NYTContainer}/>
 
                   <Route exact path = '/music/lastfm' component = {LastFmContainer}/>
+                  <Route exact path = '/music/youtubemusic' component = {YouTubeMusicContainer}/>
 
       		<Route component={My404} />
       	</Switch>
