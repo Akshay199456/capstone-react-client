@@ -25,6 +25,8 @@ const Navbar = (props) =>{
 	            // Delete front end cookies
 	            localStorage.removeItem('session');
 	            localStorage.removeItem('queryString');
+	            localStorage.removeItem('viewProfile');
+	            localStorage.removeItem('currentUserDetails');
 
 	            // Deleting data for entertainment category
 				localStorage.removeItem('youTubeVideos');
@@ -62,6 +64,13 @@ const Navbar = (props) =>{
 		props.history.push('/home');
 	}
 
+	const profile = () =>{
+		const currentUser = JSON.parse(localStorage.getItem('session'));
+		console.log('Current User: ', currentUser);
+		localStorage.setItem('viewProfile', currentUser.userId);
+		props.history.push('/viewProfile');
+	}
+
 	return(
 
 		<header>
@@ -71,7 +80,11 @@ const Navbar = (props) =>{
 
 			<div onClick={logout}>
 				 Logout 
-			</div>				
+			</div>
+
+			<div onClick={profile}>
+				 Profile
+			</div>			
 		</header>
 	);
 }

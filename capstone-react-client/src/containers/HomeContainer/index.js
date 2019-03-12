@@ -11,6 +11,28 @@ class HomeContainer extends Component{
 		}
 	}
 
+	componentDidMount = async () =>{
+		console.log("Component Getting Mounted!");
+		await this.getCurrentUserDetails();
+	}
+
+	getCurrentUserDetails = async () =>{
+		console.log("We are inside getCurrentUserDetails!");
+		console.log("Fetch Profile Details!");
+		const response = await fetch('http://localhost:9000/api/v1/user/show/'+ JSON.parse(localStorage.getItem('session')).userId, {
+			credentials: 'include'
+		});
+
+		console.log('Response from getCurrentUserDetails: ', response);
+
+		if(response.ok){
+			const parsedResponse = await response.json();
+			console.log('Parsed Response from ViewProfileContainer: ', parsedResponse);
+			
+			localStorage.setItem('currentUserDetails', JSON.stringify(parsedResponse.user));
+		}
+	}
+
 	handleChange = (e) =>{	
 		this.setState({
 			[e.target.name]: e.target.value

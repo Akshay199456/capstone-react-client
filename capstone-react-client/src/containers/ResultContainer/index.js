@@ -47,7 +47,7 @@ class ResultContainer extends Component{
 	componentDidMount = async () => {
 		// Fetching results for entertainment category
 		// await this.fetchYouTubeResults();
-		// await this.fetchTumblrResults();
+		await this.fetchTumblrResults();
 
 		//  Fetching results for news category
 		// await this.fetchNYTNewsResults();
@@ -55,7 +55,7 @@ class ResultContainer extends Component{
 		// await this.fetchTechCrunchResults();
 
 		// Fetching results for music category
-		await this.fetchYouTubeMusicResults();
+		// await this.fetchYouTubeMusicResults();
 		// await this.fetchLastFmResults();
 
 		// Generates pie graph for overall stats
@@ -64,7 +64,6 @@ class ResultContainer extends Component{
 		// Transfers all data to local Storage
 		await this.transferData();
 	}
-
 
 	fetchYouTubeResults = async () => {
 		console.log("Query String from fetchYouTubeResults: ", this.state.queryString);
