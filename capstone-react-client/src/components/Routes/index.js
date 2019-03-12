@@ -24,6 +24,9 @@ import TechCrunchContainer from '../../containers/TechCrunchContainer';
 import LastFmContainer from '../../containers/LastFmContainer';
 // import YouTubeMusicContainer from '../../containers/YouTubeMusicContainer';
 
+// C. Entertainment Containers
+import YouTubeContainer from '../../containers/YouTubeContainer';
+
 // <Route exact path = '/music/youtubemusic' component = {YouTubeMusicContainer}/>
 
 
@@ -41,6 +44,8 @@ const AllRoutes = () => {
                   <Route exact path = '/news' component = {NewsContainer}/>
       		<Route exact path = '/music' component = {MusicContainer}/>
                   <Route exact path = '/entertainment' component = {EntertainmentContainer}/>
+
+                  <Route exact path = '/entertainment/youtube' component = {YouTubeContainer}/>                  
 
                   <Route exact path = '/news/newsapi' component = {NewsAPIContainer}/>
                   <Route exact path = '/news/techcrunch' component = {TechCrunchContainer}/>

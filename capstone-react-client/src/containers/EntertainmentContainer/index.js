@@ -53,6 +53,10 @@ class EntertainmentContainer extends Component{
 		});
 	}
 
+	travelYouTube = () =>{
+		this.props.history.push('/entertainment/youtube');
+	}
+
 	render(){
 		console.log("State from Entertainment Container: ", this.state);
 		return(
@@ -60,7 +64,7 @@ class EntertainmentContainer extends Component{
 				<Navbar/>
 				Entertainment Container
 				<EntertainmentComponent 
-					youTubeVideos={this.state.youTubeVideos} youTubeVideosLength = {this.state.youTubeVideos.length}
+					youTubeVideos={this.state.youTubeVideos} youTubeVideosLength = {this.state.youTubeVideos.length} travelYouTube={this.travelYouTube}
 					tumblrData={this.state.tumblrData} tumblrDataLength = {this.state.tumblrData.length}
 				/>
 

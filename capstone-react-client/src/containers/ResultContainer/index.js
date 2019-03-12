@@ -46,7 +46,7 @@ class ResultContainer extends Component{
 
 	componentDidMount = async () => {
 		// Fetching results for entertainment category
-		// await this.fetchYouTubeResults();
+		await this.fetchYouTubeResults();
 		// await this.fetchTumblrResults();
 
 		//  Fetching results for news category
@@ -56,7 +56,7 @@ class ResultContainer extends Component{
 
 		// Fetching results for music category
 		// await this.fetchYouTubeMusicResults();
-		await this.fetchLastFmResults();
+		// await this.fetchLastFmResults();
 
 		// Generates pie graph for overall stats
 		await this.generateStatsOverall();
