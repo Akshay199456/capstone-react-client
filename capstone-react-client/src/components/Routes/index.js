@@ -20,6 +20,12 @@ import NYTContainer from '../../containers/NYTContainer';
 import NewsAPIContainer from '../../containers/NewsAPIContainer';
 import TechCrunchContainer from '../../containers/TechCrunchContainer';
 
+// B. Music Containers
+import LastFmContainer from '../../containers/LastFmContainer';
+// import YouTubeMusicContainer from '../../containers/YouTubeMusicContainer';
+
+// <Route exact path = '/music/youtubemusic' component = {YouTubeMusicContainer}/>
+
 
 import My404 from '../404';
 
@@ -39,6 +45,8 @@ const AllRoutes = () => {
                   <Route exact path = '/news/newsapi' component = {NewsAPIContainer}/>
                   <Route exact path = '/news/techcrunch' component = {TechCrunchContainer}/>
                   <Route exact path = '/news/nyt' component = {NYTContainer}/>
+
+                  <Route exact path = '/music/lastfm' component = {LastFmContainer}/>
 
       		<Route component={My404} />
       	</Switch>

@@ -50,13 +50,13 @@ class ResultContainer extends Component{
 		// await this.fetchTumblrResults();
 
 		//  Fetching results for news category
-		await this.fetchNYTNewsResults();
-		await this.fetchNewsAPIResults();
-		await this.fetchTechCrunchResults();
+		// await this.fetchNYTNewsResults();
+		// await this.fetchNewsAPIResults();
+		// await this.fetchTechCrunchResults();
 
 		// Fetching results for music category
 		// await this.fetchYouTubeMusicResults();
-		// await this.fetchLastFmResults();
+		await this.fetchLastFmResults();
 
 		// Generates pie graph for overall stats
 		await this.generateStatsOverall();

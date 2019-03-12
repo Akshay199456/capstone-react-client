@@ -53,6 +53,14 @@ class MusicContainer extends Component{
 		});
 	}
 
+	travelYouTubeMusic = () =>{
+		this.props.history.push('/music/youtubemusic');
+	}
+
+	travelLastFm = () =>{
+		this.props.history.push('/music/lastfm');
+	}
+
 	render(){
 		console.log("State from MusicContainer: ", this.state);
 		return(
@@ -60,8 +68,8 @@ class MusicContainer extends Component{
 				<Navbar/>
 				Music Container
 				<MusicComponent 
-					youTubeMusicVideos={this.state.youTubeMusicVideos} youTubeMusicVideosLength = {this.state.youTubeMusicVideos.length}
-					lastFmResults={this.state.lastFmResults} lastFmResultsLength = {this.state.lastFmResults.length}
+					youTubeMusicVideos={this.state.youTubeMusicVideos} youTubeMusicVideosLength = {this.state.youTubeMusicVideos.length} travelYouTubeMusic={this.travelYouTubeMusic}
+					lastFmResults={this.state.lastFmResults} lastFmResultsLength = {this.state.lastFmResults.length} travelLastFm={this.travelLastFm}
 				/>
 
 				<DisplayPieChart 
