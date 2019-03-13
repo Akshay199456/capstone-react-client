@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Navbar from '../../components/Navbar';
 import APIComponent from '../../components/APIComponent';
 import DisplayPieChart from '../../components/DisplayPieChart';
+import { Button } from 'semantic-ui-react'
+import './index.css';
 
 
 class ResultContainer extends Component{
@@ -34,6 +36,7 @@ class ResultContainer extends Component{
 
 			// Data to display radial chart
 			dataReadyToDisplay: false,
+			resultsReady: false,
 			entertainmentCount: 0,
 			musicCount: 0,
 			newsCount: 0,
@@ -395,7 +398,25 @@ class ResultContainer extends Component{
 		localStorage.setItem('youTubeMusicVideosCount', JSON.stringify(this.state.youTubeMusicVideosCount));
 		localStorage.setItem('lastFmResults', JSON.stringify(this.state.lastFmResults));
 		localStorage.setItem('lastFmResultsCount', JSON.stringify(this.state.lastFmResultsCount));
+
+		this.setState({
+			resultsReady: true
+		});
 	}
+
+
+
+	/*
+		<APIComponent 
+							youTubeVideos={this.state.youTubeVideos} youTubeVideosLength = {this.state.youTubeVideos.length}
+							nytArticles={this.state.nytArticles} nytArticlesLength = {this.state.nytArticles.length}
+							newsAPIArticles={this.state.newsAPIArticles} newsAPIArticlesLength = {this.state.newsAPIArticles.length}
+							techCrunchArticles={this.state.techCrunchArticles} techCrunchArticlesLength = {this.state.techCrunchArticles.length}
+							tumblrData={this.state.tumblrData} tumblrDataLength = {this.state.tumblrData.length}
+							youTubeMusicVideos={this.state.youTubeMusicVideos} youTubeMusicVideosLength = {this.state.youTubeMusicVideos.length}
+							lastFmResults={this.state.lastFmResults} lastFmResultsLength = {this.state.lastFmResults.length}
+						/>
+	*/
 
 	render(){
 
@@ -403,29 +424,42 @@ class ResultContainer extends Component{
 		return(
 			<div>
 				<Navbar/>
-				Welcome to the ResultContainer! Your Query String was <strong> {this.state.queryString} </strong>
+				<div>
+				{ this.state.resultsReady ?
+					<div>
+						<div className='buttonGroup'>
+							<Button.Group widths='4'>
+								<Button primary onClick={this.transferEntertainment}> Explore Entertainment </Button> 
+								<Button primary onClick={this.transferMusic}> Explore Music </Button> 
+								<Button primary onClick={this.transferNews}> Explore News </Button>
+								{  this.state.dataReadyToDisplay ? 
+									<Button primary onClick={this.setDataReady}> 
+										Hide Results 
+									</Button>
+									:
+									<Button primary onClick={this.setDataReady}> 
+										Analyze Results 
+									</Button>
+								}
+							</Button.Group>
+						</div>
 
-				<APIComponent 
-					youTubeVideos={this.state.youTubeVideos} youTubeVideosLength = {this.state.youTubeVideos.length}
-					nytArticles={this.state.nytArticles} nytArticlesLength = {this.state.nytArticles.length}
-					newsAPIArticles={this.state.newsAPIArticles} newsAPIArticlesLength = {this.state.newsAPIArticles.length}
-					techCrunchArticles={this.state.techCrunchArticles} techCrunchArticlesLength = {this.state.techCrunchArticles.length}
-					tumblrData={this.state.tumblrData} tumblrDataLength = {this.state.tumblrData.length}
-					youTubeMusicVideos={this.state.youTubeMusicVideos} youTubeMusicVideosLength = {this.state.youTubeMusicVideos.length}
-					lastFmResults={this.state.lastFmResults} lastFmResultsLength = {this.state.lastFmResults.length}
-				/>
-				
-				<DisplayPieChart 
-					angle1 = {this.state.entertainmentPercentage} label1={'Entertainment'}
-					angle2 = {this.state.musicPercentage} label2={'Music'}
-					angle3 = {this.state.newsPercentage} label3={'News'}
-					setDataReady = {this.setDataReady}
-					dataReadyToDisplay = {this.state.dataReadyToDisplay}
-				/>
-
-				<button onClick={this.transferEntertainment}> Explore Entertainment </button> 
-				<button onClick={this.transferMusic}> Explore Music </button> 
-				<button onClick={this.transferNews}> Explore News </button> 
+						<div className='pieChart'>
+							<DisplayPieChart 
+								angle1 = {this.state.entertainmentPercentage} label1={'Entertainment'}
+								angle2 = {this.state.musicPercentage} label2={'Music'}
+								angle3 = {this.state.newsPercentage} label3={'News'}
+								setDataReady = {this.setDataReady}
+								dataReadyToDisplay = {this.state.dataReadyToDisplay}
+							/>
+						</div>
+					</div>
+					:
+					<div>
+						Please wait while we fetch your results!
+					</div>
+				}
+				</div>
 			</div>
 		);
 	}

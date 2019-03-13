@@ -15,17 +15,6 @@ const DisplayPieChart = (props) =>{
 					/>
 					 : null
 				}
-						
-				{  props.dataReadyToDisplay ? 
-					<button onClick={props.setDataReady}> 
-						Hide Results 
-					</button>
-					:
-					<button onClick={props.setDataReady}> 
-						Analyze Results 
-					</button>
-				}
-				
 			</div> 
 	);
 }
