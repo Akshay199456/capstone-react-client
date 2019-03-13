@@ -24,6 +24,7 @@
 .text{
 	text-align: center;
 	color: white;
+	line-height: 1.6;
 	font-family: 'Lobster', cursive;
 }
 
@@ -32,8 +33,8 @@
 	background-size: 245px 245px; 
 }
 
-.box4{
-	background: url('/boxDisplay/shallow.jpg') no-repeat;
+.box2{
+	background: url('/boxDisplay/lastFm.png') no-repeat;
 	background-size: 245px 245px; 
 }
 
@@ -42,8 +43,8 @@
 	background-size: 245px 245px; 
 }
 
-.box6{
-	background: url('/boxDisplay/nyt.png') no-repeat;
+.box4{
+	background: url('/boxDisplay/shallow.jpg') no-repeat;
 	background-size: 245px 245px; 
 }
 
@@ -52,8 +53,8 @@
 	background-size: 245px 245px; 
 }
 
-.box2{
-	background: url('/boxDisplay/lastFm.png') no-repeat;
+.box6{
+	background: url('/boxDisplay/nyt.png') no-repeat;
 	background-size: 245px 245px; 
 }
 
@@ -64,28 +65,3 @@
 body{
 	min-width: 1000px;
 }
-
-/*@media only screen and (max-width: 1000px) {
-  .authentication {
-    width: 50%;
-  }
-
-  .col-8{
-  	width: 50%;
-  }
-
-  .box{
-  	height: 100px;
-  	width: 100px;
-  	margin: 0px;
-  }
-
-  .boxColumn{
-  	width: 100%;
-  }
-
-  .box1, .box2, .box3, .box4, .box5, .box6{
-	background: url('/boxDisplay/zedd.jpg') no-repeat;
-	background-size: 100px 100px; 
-}
-}*/

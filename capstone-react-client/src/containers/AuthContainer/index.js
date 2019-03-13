@@ -226,9 +226,9 @@ class AuthContainer extends Component{
 					</div>
 
 					<div className='column column-8 bgBlack'>
-						<div className='text row'>
-							<h1> Get up to date information with articles, news and videos from different sources. </h1>
-							<h3> Stay Connected!</h3>
+						<div className='row'>
+							<h1 className='text'> Get Real-Time Information With Videos, Songs, Articles</h1>
+							<h1 className='text'> and News From Different Sources. </h1>
 						</div>
 						<div className='row'> 
 							<div className = 'boxColumn column column-4 bgBlack'> 

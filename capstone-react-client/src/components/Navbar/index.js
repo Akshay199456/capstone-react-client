@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
-import './index.css';
 import { Menu, Segment } from 'semantic-ui-react'
 
 class Navbar extends Component{

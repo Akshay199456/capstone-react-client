@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form} from 'semantic-ui-react';
 import Navbar from '../../components/Navbar';
+import './index.css';
 
 class HomeContainer extends Component{
 	constructor(){
@@ -58,10 +59,49 @@ class HomeContainer extends Component{
 		return(
 			<div>
 				<Navbar/>
-				<Form onSubmit={this.handleSubmit}>
-					<Form.Input type='text' name='queryString' placeholder='What are you searching for?' onChange={this.handleChange}/>
-					<Button type='submit' color='blue' fluid> Search </Button>
-				</Form>
+				<div className='row width'>
+					<div className='row'>
+						<h1 className='textHome'> Supported Platforms </h1>
+					</div>
+					<div className='row'> 
+							<div className = 'boxColumn column column-4 bgGrey'> 
+								<div className='boxHome boxhome1'></div>
+							</div>
+							<div className = 'boxColumn column column-4 bgGrey'> 
+								<div className='boxHome boxhome2'></div>
+							</div>
+							<div className = 'boxColumn column column-4 bgGrey'> 
+								<div className='boxHome boxhome3'></div>
+							</div>
+					</div>
+
+					<div className='row'> 
+							<div className = 'boxColumn column column-4 bgGrey'> 
+								<div className='boxHome boxhome4'></div>
+							</div>
+							<div className = 'boxColumn column column-4 bgGrey'> 
+								<div className='boxHome boxhome5'></div>
+							</div>
+							<div className = 'boxColumn column column-4 bgGrey'> 
+								<div className='boxHome boxhome6'></div>
+							</div>
+					</div>
+				</div>
+
+				<div className='row'>
+					<div className='column column-3'>
+					</div>
+
+					<div className='inputHome column column-6'>
+						<Form onSubmit={this.handleSubmit}>
+							<Form.Input type='text' name='queryString' placeholder='What are you searching for?' onChange={this.handleChange}/>
+							<Button type='submit' color='blue' fluid> Search </Button>
+						</Form>
+					</div>
+
+					<div className='col col-3'>
+					</div>
+				</div>
 			</div>
 		);
 	}
