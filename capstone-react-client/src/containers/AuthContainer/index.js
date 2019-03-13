@@ -3,6 +3,8 @@ import Login from '../../components/Login';
 import Register from '../../components/Register';
 import SuccessMessage from '../../components/SuccessMessage';
 import ErrorMessage from '../../components/ErrorMessage';
+import { Grid, Header } from 'semantic-ui-react';
+import './index.css';
 
 class AuthContainer extends Component{
 
@@ -183,23 +185,74 @@ class AuthContainer extends Component{
 		// console.log("State from triggerRegisterView: ", this.state);
 	}
 
+/*
+<div className='box box1'>
+					</div>
+					<div className='box box2'>
+					</div>
+					<div className='box box3'>
+					</div>
+					<div className='box box4'>
+					</div>
+					<div className='box box5'>
+					</div>
+					<div className='box box6'>
+					</div>
+					</div>
+
+<div className = 'bg'>
+					 
+				</div>
+*/
 	render(){
 		// console.log("State from render: ", this.state);
+
 		return(
-			<div>
-				{this.state.loginButton ? <Login handleLoginChange={this.handleLoginChange} handleLoginSubmit={this.handleLoginSubmit} triggerRegisterView={this.triggerRegisterView}/>
-					:
-					<Register handleRegisterChange={this.handleRegisterChange} handleRegisterSubmit={this.handleRegisterSubmit} triggerLoginView={this.triggerLoginView}/>
-				}
+				<div className='row'>
+					<div className='authentication column column-4'>
+						{this.state.loginButton ? <Login handleLoginChange={this.handleLoginChange} handleLoginSubmit={this.handleLoginSubmit} triggerRegisterView={this.triggerRegisterView}/>
+							:
+							<Register handleRegisterChange={this.handleRegisterChange} handleRegisterSubmit={this.handleRegisterSubmit} triggerLoginView={this.triggerLoginView}/>
+						}
+						{ this.state.errorMessage !== '' ?
+					       	<ErrorMessage errorMessage={this.state.errorMessage}/> : null
+					    }
 
-				{ this.state.errorMessage !== '' ?
-                  <ErrorMessage errorMessage={this.state.errorMessage}/> : null
-              }
+						{ this.state.successMessage !== '' ?
+					        <SuccessMessage successMessage={this.state.successMessage}/> : null
+					    }
+					</div>
 
-              { this.state.successMessage !== '' ?
-                  <SuccessMessage successMessage={this.state.successMessage}/> : null
-              } 
-			</div>
+					<div className='column column-8 bgBlack'>
+						<div className='text row'>
+							<h1> Get up to date information with articles, news and videos from different sources. </h1>
+							<h3> Stay Connected!</h3>
+						</div>
+						<div className='row'> 
+							<div className = 'boxColumn column column-4 bgBlack'> 
+								<div className='box box1'></div>
+							</div>
+							<div className = 'boxColumn column column-4 bgBlack'> 
+								<div className='box box2'></div>
+							</div>
+							<div className = 'boxColumn column column-4 bgBlack'> 
+								<div className='box box3'></div>
+							</div>
+						</div>
+
+						<div className='row'> 
+							<div className = 'boxColumn column column-4 bgBlack'> 
+								<div className='box box4'></div>
+							</div>
+							<div className = 'boxColumn column column-4 bgBlack'> 
+								<div className='box box5'></div>
+							</div>
+							<div className = 'boxColumn column column-4 bgBlack'> 
+								<div className='box box6'></div>
+							</div>
+						</div>
+					</div>						
+				</div>
 		);
 	}
 }
