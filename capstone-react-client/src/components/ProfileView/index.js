@@ -42,6 +42,7 @@ const ProfileView = (props) =>{
 		    localStorage.removeItem('queryString');
 		    localStorage.removeItem('viewProfile');
 		    localStorage.removeItem('currentUserDetails');
+		    localStorage.removeItem('navbar');
 
 		    // Deleting data for entertainment category
 			localStorage.removeItem('youTubeVideos');

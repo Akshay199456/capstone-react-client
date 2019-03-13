@@ -74,6 +74,7 @@ class AuthContainer extends Component{
 
 			// Storing current user info as a cookie
 			localStorage.setItem('session', JSON.stringify(parsedResponse.session));
+			localStorage.setItem('navbar', 'home');
 			this.props.history.push('/home');
 
 
@@ -152,6 +153,7 @@ class AuthContainer extends Component{
 
 			// Storing current user info as a cookie
 			localStorage.setItem('session', JSON.stringify(parsedResponse.session));
+			localStorage.setItem('navbar', 'home');
 			this.props.history.push('/home');
 		}
 
