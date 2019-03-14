@@ -22,7 +22,9 @@ const LastFmTopTracks = (props) =>{
 	return(
 			<div> 
 				<h1 className='centerText'> Top Tracks </h1>
-				{articles}
+				<div className="row">
+					{articles}
+				</div>
 			</div> 
 	);
 }

@@ -21,9 +21,12 @@ const TrendingNewsAPI = (props) =>{
 	});
 
 	return(
-			<div> 
+			<div>
+				
 				<h1 className='centerText'> {props.name}</h1>
-				{articles}
+				<div className="row">
+					{articles}
+				</div>
 			</div> 
 	);
 }

@@ -22,7 +22,9 @@ const NewsAPI = (props) =>{
 	return(
 			<div> 
 				<h1 className='centerText'> News API Articles </h1>
-				{articles}
+				<div className="row">
+					{articles}
+				</div>
 			</div> 
 	);
 }

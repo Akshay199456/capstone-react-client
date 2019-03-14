@@ -22,7 +22,9 @@ const NYTNews = (props) =>{
 	return(
 			<div> 
 				<h1 className='centerText'> NYT Articles </h1>
-				{articles}
+				<div className="row">
+					{articles}
+				</div>
 			</div> 
 	);
 }

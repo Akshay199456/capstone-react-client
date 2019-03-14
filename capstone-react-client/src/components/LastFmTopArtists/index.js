@@ -20,7 +20,9 @@ const LastFmTopArtists = (props) =>{
 	return(
 			<div> 
 				<h1 className='centerText'> Top Artists </h1>
-				{articles}
+				<div className="row">
+					{articles}
+				</div>
 			</div> 
 	);
 }

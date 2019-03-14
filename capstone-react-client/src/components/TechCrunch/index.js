@@ -22,7 +22,9 @@ const TechCrunch = (props) =>{
 	return(
 			<div> 
 				<h1 className='centerText'> TechCrunch Articles </h1>
-				{articles}
+				<div className="row">
+					{articles}
+				</div>
 			</div> 
 	);
 }

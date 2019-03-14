@@ -77,7 +77,9 @@ const Tumblr = (props) =>{
 	return(
 			<div> 
 				<h1 className='centerText'> Tumblr Articles </h1>
-				{articles}
+				<div className="row">
+					{articles}
+				</div>
 			</div> 
 	);
 }

@@ -31,7 +31,9 @@ const YouTubeMusic = (props) =>{
 	return(
 			<div> 
 				<h1 className='centerText'> YouTube Music Videos </h1>
-				{videos}
+				<div className="row">
+					{videos}
+				</div>
 			</div> 
 	);
 }

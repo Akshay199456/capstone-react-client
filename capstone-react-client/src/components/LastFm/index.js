@@ -21,7 +21,9 @@ const LastFm = (props) =>{
 	return(
 			<div> 
 				<h1 className='centerText'> Last Fm Results </h1>
-				{articles}
+				<div className="row">
+					{articles}
+				</div>
 			</div> 
 	);
 }

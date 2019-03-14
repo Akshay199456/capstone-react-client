@@ -24,7 +24,9 @@ const YouTube = (props) =>{
 	return(
 			<div className='row'> 
 				<h1 className='centerText'> YouTube Videos </h1>
+				<div className="row">
 				{videos}
+				</div>
 			</div> 
 	);
 }

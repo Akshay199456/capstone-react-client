@@ -33,7 +33,9 @@ const YouTubeTrending = (props) =>{
 	return(
 			<div> 
 				<h1 className='centerText'> {props.name} Trending Videos </h1>
-				{videos}
+				<div className="row">
+					{videos}
+				</div>
 			</div> 
 	);
 }
