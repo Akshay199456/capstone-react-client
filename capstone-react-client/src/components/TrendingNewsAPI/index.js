@@ -1,26 +1,28 @@
 import React from 'react';
-import { Segment } from 'semantic-ui-react';
+import { Image } from 'semantic-ui-react';
 
 const TrendingNewsAPI = (props) =>{
 
 	const articles = props.headlines.map((item, index) =>{
 		return(
-			<Segment raised key={index}>
-				<div> Image: <img src={item.urlToImage} alt="Something"/></div>
-				<div> Source: {item.source.name}</div>
-				<div> Published Date: {item.publishedAt} </div>
-				<div> Author: {item.author}</div>
-				<div> Title: {item.title}</div>
-				<div> Content: {item.content} </div>
-				<div> Description: {item.description}</div>
-				<div> Article Link: <a href={item.url} target="_blank" alt="Article Image" rel="noopener noreferrer"> {item.source.name} </a> </div>
-			</Segment>
+			<div key={index}>
+				<div className='column column-5 border'>
+					<div> <Image src={item.urlToImage}/></div>
+					<div className='fontTumblr centerText'> <strong> Source: </strong> {item.source.name}</div>
+					<div className='fontTumblr centerText'> <strong> Published Date: </strong> {item.publishedAt} </div>
+					<div className='fontTumblr centerText'> <strong> Author: </strong> {item.author}</div>
+					<div className='fontTumblr centerText'> <strong> Title: </strong> {item.title}</div>
+					<div className='fontTumblr centerText'> <strong> Content: </strong> {item.content} </div>
+					<div className='fontTumblr centerText'> <strong> Description: </strong> {item.description}</div>
+					<div className='fontTumblr centerText'> <strong> Article Link: </strong> <a href={item.url} target="_blank" alt="Article Image" rel="noopener noreferrer"> {item.source.name} </a> </div>
+				</div>
+			</div>
 		);
 	});
 
 	return(
 			<div> 
-				<h1> {props.name} News API </h1>
+				<h1 className='centerText'> {props.name}</h1>
 				{articles}
 			</div> 
 	);

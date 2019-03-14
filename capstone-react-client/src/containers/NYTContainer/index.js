@@ -72,7 +72,6 @@ class NYTContainer extends Component{
 		return(
 			<div>
 				<Navbar/>
-				Welcome to the NYT Container
 				{ this.state.nytArticles.length === 0 ? null : <NYTNews nytArticles={this.state.nytArticles}/>}
 				{ this.state.topHeadlines.length === 0 ? null : <TrendingNewsAPI headlines={this.state.topHeadlines} name={'Trending NYT Articles'}/>}
 				{ this.state.popularHeadlines.length === 0 ? null : <TrendingNewsAPI headlines={this.state.popularHeadlines} name={'Popular NYT Articles'}/>}

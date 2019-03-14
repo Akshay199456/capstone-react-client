@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../../components/Navbar';
 import NewsComponent from '../../components/NewsComponent';
 import DisplayPieChart from '../../components/DisplayPieChart';
+import { Button } from 'semantic-ui-react';
 
 class NewsContainer extends Component{
 	constructor(){
@@ -78,12 +79,22 @@ class NewsContainer extends Component{
 		return(
 			<div>
 				<Navbar/>
-				News Container
-				<NewsComponent 
-					nytArticles={this.state.nytArticles} nytArticlesLength = {this.state.nytArticles.length} travelNYT={this.travelNYT}
-					newsAPIArticles={this.state.newsAPIArticles} newsAPIArticlesLength = {this.state.newsAPIArticles.length} travelNewsAPI={this.travelNewsAPI}
-					techCrunchArticles={this.state.techCrunchArticles} techCrunchArticlesLength = {this.state.techCrunchArticles.length} travelTechCrunch={this.travelTechCrunch}
-				/>
+				<div className='buttonGroup'>
+					<Button.Group widths='4'>
+						<Button primary onClick={this.travelNYT}> Explorer New York Times </Button>
+						<Button primary onClick={this.travelNewsAPI}> Explore News API </Button>
+						<Button primary onClick={this.travelTechCrunch}> Explore TechCrunch </Button> 
+						{  this.state.dataReadyToDisplay ? 
+							<Button primary onClick={this.setDataReady}> 
+								Hide Results 
+							</Button>
+							:
+							<Button primary onClick={this.setDataReady}> 
+								Analyze Results 
+							</Button>
+						}
+					</Button.Group>
+				</div>
 
 				<DisplayPieChart 
 					angle1 = {this.state.nytArticlesPercentage} label1={'New York Times'}
@@ -91,6 +102,12 @@ class NewsContainer extends Component{
 					angle3 = {this.state.techCrunchArticlesPercentage} label3={'TechCrunch'}
 					setDataReady = {this.setDataReady}
 					dataReadyToDisplay = {this.state.dataReadyToDisplay}
+				/>
+				
+				<NewsComponent 
+					nytArticles={this.state.nytArticles} nytArticlesLength = {this.state.nytArticles.length} travelNYT={this.travelNYT}
+					newsAPIArticles={this.state.newsAPIArticles} newsAPIArticlesLength = {this.state.newsAPIArticles.length} travelNewsAPI={this.travelNewsAPI}
+					techCrunchArticles={this.state.techCrunchArticles} techCrunchArticlesLength = {this.state.techCrunchArticles.length} travelTechCrunch={this.travelTechCrunch}
 				/>
 			</div>
 		);

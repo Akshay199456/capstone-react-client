@@ -72,7 +72,6 @@ class NewsAPIContainer extends Component{
 		return(
 			<div>
 				<Navbar/>
-				Welcome to the News API Container
 				{ this.state.newsAPIArticles.length === 0 ? null : <NewsAPI newsAPIArticles={this.state.newsAPIArticles}/>}
 				{ this.state.topHeadlines.length === 0 ? null : <TrendingNewsAPI headlines={this.state.topHeadlines} name={'Trending News API Articles'}/>}
 				{ this.state.popularHeadlines.length === 0 ? null : <TrendingNewsAPI headlines={this.state.popularHeadlines} name={'Popular News API Articles'}/>}

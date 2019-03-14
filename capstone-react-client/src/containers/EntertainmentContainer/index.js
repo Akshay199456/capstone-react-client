@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../../components/Navbar';
 import EntertainmentComponent from '../../components/EntertainmentComponent';
 import DisplayPieChart from '../../components/DisplayPieChart';
+import { Button } from 'semantic-ui-react';
 
 class EntertainmentContainer extends Component{
 	constructor(){
@@ -62,11 +63,20 @@ class EntertainmentContainer extends Component{
 		return(
 			<div>
 				<Navbar/>
-				Entertainment Container
-				<EntertainmentComponent 
-					youTubeVideos={this.state.youTubeVideos} youTubeVideosLength = {this.state.youTubeVideos.length} travelYouTube={this.travelYouTube}
-					tumblrData={this.state.tumblrData} tumblrDataLength = {this.state.tumblrData.length}
-				/>
+				<div className='buttonGroupEntertainment'>
+					<Button.Group widths='2'>
+						<Button primary onClick={this.travelYouTube}> Explore YouTube </Button>
+						{  this.state.dataReadyToDisplay ? 
+							<Button primary onClick={this.setDataReady}> 
+								Hide Results 
+							</Button>
+							:
+							<Button primary onClick={this.setDataReady}> 
+								Analyze Results 
+							</Button>
+						}
+					</Button.Group>
+				</div>
 
 				<DisplayPieChart 
 					angle1 = {this.state.youTubeVideosPercentage} label1={'YouTube'}
@@ -74,6 +84,11 @@ class EntertainmentContainer extends Component{
 					angle3 = {0} label3={''}
 					setDataReady = {this.setDataReady}
 					dataReadyToDisplay = {this.state.dataReadyToDisplay}
+				/>
+				
+				<EntertainmentComponent 
+					youTubeVideos={this.state.youTubeVideos} youTubeVideosLength = {this.state.youTubeVideos.length} travelYouTube={this.travelYouTube}
+					tumblrData={this.state.tumblrData} tumblrDataLength = {this.state.tumblrData.length}
 				/>
 			</div>
 		);

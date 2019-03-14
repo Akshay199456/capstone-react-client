@@ -73,7 +73,6 @@ class LastFmContainer extends Component{
 		return(
 			<div>
 				<Navbar/>
-				Welcome to the Last Fm Container
 				{ this.state.lastFmResults.length === 0 ? null : <LastFm lastFmResults={this.state.lastFmResults}/>}
 				{ this.state.topTracks.length === 0 ? null : <LastFmTopTracks topTracks={this.state.topTracks}/>}
 				{ this.state.topArtists.length === 0 ? null : <LastFmTopArtists topArtists={this.state.topArtists}/>}

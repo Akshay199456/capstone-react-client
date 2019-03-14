@@ -1,23 +1,26 @@
 import React from 'react';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Image } from 'semantic-ui-react';
+import './index.css';
 
 const LastFm = (props) =>{
 
 	const articles = props.lastFmResults.map((item, index) =>{
 		return(
-			<Segment raised key={index}>
-				<div> Image: <img src={((item.image)[3])['#text']} alt="Something"/></div>
-				<div> Artist: {item.artist} </div>
-				<div> Name: {item.name} </div>
-				<div> Listeners: {item.listeners}</div>
-				<div> <a href={item.url} target="_blank" rel="noopener noreferrer"> {item.name} </a> </div>
-			</Segment>
+			<div key={index}>
+				<div className='column column-5 border'>
+					<div> <Image className='centerImage' src={((item.image)[3])['#text']}/></div>
+					<div className='fontTumblr centerText'> <strong> Artist: </strong> {item.artist}  </div>
+					<div className='fontTumblr centerText'> <strong> Name: </strong> {item.name}  </div>
+					<div className='fontTumblr centerText'> <strong> Listeners: </strong> {item.listeners}</div>
+					<div className='fontTumblr centerText'> <a href={item.url} target="_blank" rel="noopener noreferrer"> {item.name} </a> </div>
+				</div>
+			</div>
 		);
 	});
 
 	return(
 			<div> 
-				<h1> Last Fm Results </h1>
+				<h1 className='centerText'> Last Fm Results </h1>
 				{articles}
 			</div> 
 	);

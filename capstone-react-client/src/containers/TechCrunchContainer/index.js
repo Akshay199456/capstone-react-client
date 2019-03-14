@@ -72,7 +72,6 @@ class TechCrunchContainer extends Component{
 		return(
 			<div>
 				<Navbar/>
-				Welcome to the TechCrunch API Container
 				{ this.state.techCrunchArticles.length === 0 ? null : <TechCrunch techCrunchArticles={this.state.techCrunchArticles}/>}
 				{ this.state.topHeadlines.length === 0 ? null : <TrendingNewsAPI headlines={this.state.topHeadlines} name={'Trending TechCrunch Articles'}/>}
 				{ this.state.popularHeadlines.length === 0 ? null : <TrendingNewsAPI headlines={this.state.popularHeadlines} name={'Popular TechCrunch Articles'}/>}

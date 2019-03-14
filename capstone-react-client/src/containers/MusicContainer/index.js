@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../../components/Navbar';
 import MusicComponent from '../../components/MusicComponent';
 import DisplayPieChart from '../../components/DisplayPieChart';
+import { Button } from 'semantic-ui-react';
 
 class MusicContainer extends Component{
 	constructor(){
@@ -66,11 +67,21 @@ class MusicContainer extends Component{
 		return(
 			<div>
 				<Navbar/>
-				Music Container
-				<MusicComponent 
-					youTubeMusicVideos={this.state.youTubeMusicVideos} youTubeMusicVideosLength = {this.state.youTubeMusicVideos.length} travelYouTubeMusic={this.travelYouTubeMusic}
-					lastFmResults={this.state.lastFmResults} lastFmResultsLength = {this.state.lastFmResults.length} travelLastFm={this.travelLastFm}
-				/>
+				<div className='buttonGroup'>
+					<Button.Group widths='3'>
+						<Button primary onClick={this.travelYouTubeMusic}> Explore YouTube Music </Button>
+						<Button primary onClick={this.travelLastFm}> Explore Last.Fm </Button>
+						{  this.state.dataReadyToDisplay ? 
+							<Button primary onClick={this.setDataReady}> 
+								Hide Results 
+							</Button>
+							:
+							<Button primary onClick={this.setDataReady}> 
+								Analyze Results 
+							</Button>
+						}
+					</Button.Group>
+				</div>
 
 				<DisplayPieChart 
 					angle1 = {this.state.youTubeMusicVideosPercentage} label1={'YouTube Music'}
@@ -78,6 +89,11 @@ class MusicContainer extends Component{
 					angle3 = {0} label3={''}
 					setDataReady = {this.setDataReady}
 					dataReadyToDisplay = {this.state.dataReadyToDisplay}
+				/>
+
+				<MusicComponent 
+					youTubeMusicVideos={this.state.youTubeMusicVideos} youTubeMusicVideosLength = {this.state.youTubeMusicVideos.length} travelYouTubeMusic={this.travelYouTubeMusic}
+					lastFmResults={this.state.lastFmResults} lastFmResultsLength = {this.state.lastFmResults.length} travelLastFm={this.travelLastFm}
 				/>
 			</div>
 		);
