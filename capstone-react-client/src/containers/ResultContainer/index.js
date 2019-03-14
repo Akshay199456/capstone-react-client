@@ -48,18 +48,18 @@ class ResultContainer extends Component{
 	}
 
 	componentDidMount = async () => {
-		// Fetching results for entertainment category
+		// // Fetching results for entertainment category
 		// await this.fetchYouTubeResults();
 		// await this.fetchTumblrResults();
 
-		//  Fetching results for news category
+		// //  Fetching results for news category
 		// await this.fetchNYTNewsResults();
 		// await this.fetchNewsAPIResults();
 		// await this.fetchTechCrunchResults();
 
-		// Fetching results for music category
+		// // Fetching results for music category
 		// await this.fetchYouTubeMusicResults();
-		await this.fetchLastFmResults();
+		// await this.fetchLastFmResults();
 
 		// Generates pie graph for overall stats
 		await this.generateStatsOverall();
@@ -455,9 +455,12 @@ class ResultContainer extends Component{
 						</div>
 					</div>
 					:
-					<div>
-						Please wait while we fetch your results!
-					</div>
+						<div className='centerText waitingGif'>
+							<img src='/waiting.gif'/>
+							<div>
+								<h1 className='textWait'> Please Wait While We Fetch Your Results! </h1>
+							</div>
+						</div>
 				}
 				</div>
 			</div>

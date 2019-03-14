@@ -11,3 +11,13 @@
 .rv-xy-plot{
 	margin: 0 auto;
 }
+
+.waitingGif{
+	margin-top: 90px;
+}
+
+.textWait{
+	text-align: center;
+	line-height: 1.6;
+	font-family: 'Lobster', cursive;
+}

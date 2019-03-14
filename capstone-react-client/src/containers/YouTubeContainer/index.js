@@ -48,9 +48,8 @@ class YouTubeContainer extends Component{
 		return(
 			<div>
 				<Navbar/>
-				Welcome to the YouTube Container
 				{ this.state.youTubeVideos.length === 0 ? null : <YouTube youTubeVideos={this.state.youTubeVideos}/>}
-				{ this.state.trendingVideos.length === 0 ? null : <YouTubeTrending trendingVideos={this.state.trendingVideos}/>}
+				{ this.state.trendingVideos.length === 0 ? null : <YouTubeTrending name={'YouTube'} trendingVideos={this.state.trendingVideos}/>}
 			</div>
 		);
 	}

@@ -48,9 +48,8 @@ class YouTubeMusicContainer extends Component{
 		return(
 			<div>
 				<Navbar/>
-				Welcome to the YouTube Music Container
 				{ this.state.youTubeMusicVideos.length === 0 ? null : <YouTubeMusic youTubeMusicVideos={this.state.youTubeMusicVideos}/>}
-				{ this.state.trendingMusicVideos.length === 0 ? null : <YouTubeTrending trendingVideos={this.state.trendingMusicVideos}/>}
+				{ this.state.trendingMusicVideos.length === 0 ? null : <YouTubeTrending name={'YouTube Music'} trendingVideos={this.state.trendingMusicVideos}/>}
 			</div>
 		);
 	}
