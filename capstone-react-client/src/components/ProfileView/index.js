@@ -1,6 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
-import { Button, Segment } from 'semantic-ui-react';
+import { Button, Image } from 'semantic-ui-react';
+import './index.css';
 
 const ProfileView = (props) =>{
 
@@ -71,31 +72,47 @@ const ProfileView = (props) =>{
 
 	return(
 		<div>
-		{
-			(props.user.length !== 0 && currentUserId!==viewProfileId ) ?
-			<div>
-				<Segment raised>
-					<div> Username: {props.user.username} </div>
-					<div> Email: {props.user.email} </div>
-					<div> User ID: {props.user._id} </div>
-				</Segment>
-			</div> : 
-
-			<div>
-				<Segment raised>
-					<div> LoggedIn Status: True</div>
-					<div> Username: {currentUserDetails.username} </div>
-					<div> Email: {currentUserDetails.email} </div>
-					<div> User ID: {currentUserDetails._id} </div>
-				</Segment>
+			<div className='buttonGroup'>
+				<Button.Group widths='3'>
+					<Button primary onClick={searchUsers}> Search Users </Button>
+					{ currentUserId === viewProfileId ? <Button primary onClick={editProfile}> Edit Profile </Button> : null}
+					{ currentUserId === viewProfileId ? <Button primary onClick={deleteProfile}> Delete Profile </Button> : null} 
+				</Button.Group>
 			</div>
 
+			<div className='column column-2'>
+			</div>
+			{
+				(props.user.length !== 0 && currentUserId!==viewProfileId ) ?
+				<div className='userProfileMargin'>
+					<div className='column column-8'>
+						<div className='column column-3'>
+							<Image src='/user.png'/>
+						</div>
+						<div className='column column-9'>
+							<div className='centerText lineHeight fontTumblr'> <strong> Username: </strong> {props.user.username} </div>
+							<div className='centerText lineHeight fontTumblr'> <strong> Email: </strong> {props.user.email} </div>
+							<div className='centerText lineHeight fontTumblr'> <strong> User ID: </strong> {props.user._id} </div>
+						</div>
+					</div>
+				</div> : 
 
-		}	
+				<div className='userProfileMargin'>
+					<div className='column column-8'>
+						<div className='column column-3'>
+							<Image src='/user.png'/>
+						</div>
+						<div className='column column-9'>
+							<div className='centerText lineHeight fontTumblr'> <strong> Username:</strong>  {currentUserDetails.username} </div>
+							<div className='centerText lineHeight fontTumblr'> <strong> Email: </strong> {currentUserDetails.email} </div>
+							<div className='centerText lineHeight fontTumblr'> <strong> User ID: </strong> {currentUserDetails._id} </div>
+						</div>
+					</div>
+				</div>
+			}
 
-			<Button onClick={searchUsers}> Search Users </Button>
-			{ currentUserId === viewProfileId ? <Button onClick={editProfile}> Edit Profile </Button> : null}
-			{ currentUserId === viewProfileId ? <Button onClick={deleteProfile}> Delete Profile </Button> : null}
+			<div className='column column-2'>
+			</div>
 		</div>
 	);
 }

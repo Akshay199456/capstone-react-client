@@ -38,7 +38,6 @@ class ViewProfileContainer extends Component{
 		return(
 			<div>
 				<Navbar/> 
-				Welcome to ViewProfile Component!
 				<ProfileView user={this.state.user}/>
 			</div> 
 		);

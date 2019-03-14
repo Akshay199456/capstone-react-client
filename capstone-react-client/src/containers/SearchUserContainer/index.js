@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form} from 'semantic-ui-react';
 import Navbar from '../../components/Navbar';
 import DisplayUsers from '../../components/DisplayUsers';
+import './index.css';
 
 class SearchUserContainer extends Component{
 	constructor(){
@@ -11,7 +12,8 @@ class SearchUserContainer extends Component{
 			findUser: '',
 			count: 0,
 			users: [],
-			found: undefined
+			found: undefined,
+			errorMessage: ''
 		}
 	}
 
@@ -72,13 +74,22 @@ class SearchUserContainer extends Component{
 		return(
 			<div>
 				<Navbar/>
-				<Form onSubmit={this.handleSubmit}>
-					<Form.Input type='text' name='findUser' placeholder='Find User' onChange={this.handleChange}/>
-					<Button type='submit' color='blue' fluid> Search </Button>
-				</Form>
+				<div className= 'row marginTopSearch'>
+					<div className='column column-3'>
+					</div>
 
-				{ this.state.count !== 0 ? <DisplayUsers users={this.state.users} viewProfile={this.viewProfile}/> : null}
-				{ this.state.found === false ? <iframe title="where-gif" src="https://giphy.com/embed/3o7aTskHEUdgCQAXde" width="480" height="204" frameBorder="0" className="giphy-embed" allowFullScreen></iframe> : null}
+					<div className='column column-6'>
+						<Form onSubmit={this.handleSubmit}>
+							<Form.Input type='text' name='findUser' placeholder='Enter username to find user' onChange={this.handleChange}/>
+							<Button type='submit' color='blue' fluid> Search </Button>
+						</Form>
+						<div className='marginMatch'> { this.state.count !== 0 ? <DisplayUsers users={this.state.users} viewProfile={this.viewProfile}/> : null} </div>
+						{ this.state.found === false ? <div> <img className='marginComponent' src='/giphy.gif'/> </div> : null}
+					</div>
+
+					<div className='column column-3'>
+					</div>
+				</div>
 			</div>
 		);
 	}

@@ -13,9 +13,9 @@ const EditProfileComponent = (props) =>{
 		    `}
 		    </style>
 
-		    <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>	
+		    <Grid textAlign='center' style={{ height: '100%', marginTop: '80px' }} verticalAlign='middle'>	
 		    	<Grid.Column style={{ maxWidth: 450 }}>
-		    		<Header as='h2' color='teal' textAlign='center'>
+		    		<Header as='h2' color='black' textAlign='center'>
 	          			<span> Edit Profile </span>
 	       			</Header>
 					<Form onSubmit={props.handleSubmit} size='large'>
@@ -27,7 +27,7 @@ const EditProfileComponent = (props) =>{
 							<Form.Input fluid icon="expeditedssl" iconPosition='left' type="password" name="confirmPassword" onChange={props.handleChange} placeholder="Verify Password"/>
 						</Segment>	  	
 							
-							<Button className="containerWidth"  color='teal' fluid size='large' type='submit'> Confirm Changes </Button>		  	
+							<Button className="containerWidth"  color='blue' fluid size='large' type='submit'> Confirm Changes </Button>		  	
 						
 					</Form>
 				</Grid.Column>
